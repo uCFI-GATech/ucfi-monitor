@@ -36,10 +36,6 @@ int main(int argc, char** argv) {
 
 	ProcessModule(module, pta);
 	errs() << "==== Module processed ======\n";
-#if 0
-	HandleMapsFile(MapsFileName);
-	errs() << "===== Module maps handled =====\n";
-#endif
 
 	// handle the bb info file
 	HandleBBInfoFile(BBInfoFile, module);
@@ -47,19 +43,6 @@ int main(int argc, char** argv) {
 
 	initializePinTrace(PinTraceFile);
 	
-	/*
-	for (Module::iterator it = module->begin(), ie = module->end(); it != ie; ++it) {
-		Function &f = *it;
-		errs() << "*" << f.getName() << '\n';
-		if (f.isDeclaration() || f.isIntrinsic())
-			continue;
-		if (f.getName() == "main") {
-			pta->initializeMainArg(*module);
-			//pta->pushCallStack(&f);
-			break;
-		}
-	}
-	*/
 	pta->initializeMainArg(*module);
 
 	errs() << "===== Ready to go =====\n";
